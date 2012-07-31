@@ -17,7 +17,8 @@ define(function() {
     },
 
     functions : function(flag) {
-      var getValue = null;
+      var getValue;
+      
       if (flag) {
         getValue = function() { return "a"; }
       } else {
@@ -32,7 +33,7 @@ define(function() {
     },
 
     identity : function(val1, val2) {
-        return val1 === val2;
+      return val1 === val2;
     }
   };
 });
