@@ -11,7 +11,7 @@ define(function() {
     },
 
     endsWithVowel : function(str) {
-      return !!str.match(/[aeiou]$/);
+      return !!str.match(/[aeiou]$/i);
     },
 
     captureThreeNumbers : function(str) {
