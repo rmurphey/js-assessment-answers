@@ -3,27 +3,24 @@ if (typeof define !== 'function') { var define = require('amdefine')(module); }
 define(function() {
   return {
     containsNumber : function(str) {
-      return !!str.match(/\d/);
+      return /\d/.test(str);
     },
 
     containsRepeatingLetter : function(str) {
-      return !!str.match(/([A-Za-z])\1/);
+      return /([A-Za-z])\1/.test(str);
     },
 
     endsWithVowel : function(str) {
-      return !!str.match(/[aeiou]$/i);
+      return /[aeiou]$/i.test(str);
     },
 
     captureThreeNumbers : function(str) {
-      var matches = str.match(/\d{3}/);
-      if (matches) {
-        return matches[0];
-      }
-      return false;
+      var matches = /\d{3}/.exec(str);
+      return matches ? matches[0] : false;
     },
 
     matchesPattern : function(str) {
-      return !!str.match(/^\d{3}-\d{3}-\d{4}$/);
+      return /^\d{3}-\d{3}-\d{4}$/.test(str);
     },
 
     isUSD : function(str) {
