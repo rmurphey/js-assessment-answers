@@ -12,6 +12,8 @@ define(function() {
           return i;
         }
       }
+
+      return -1;
     },
 
     sum : function(arr) {
