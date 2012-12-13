@@ -12,25 +12,20 @@ define(function() {
       // otherwise the function should return the number, or false if no number
       // was provided
 
-      if (!num) { return false; }
+      // empty string to contain potential responses
+      var fb = '';
 
-      // not divisible by 3 or 5
-      if (num % 3 && num % 5) {
-        return num;
-      }
+      // NaN
+      if (typeof num !== 'number') { return false; }
 
-      // divisible by 3 but not 5
-      if (num % 5) {
-        return 'fizz';
-      }
+      // if divisible by 3, add fizz
+      if (num % 3 === 0)  { fb += 'fizz'; }
 
-      // divisible by 5 but not 3
-      if (num % 3) {
-        return 'buzz';
-      }
+      // if divisible by 5, add buzz
+      if (num % 5 === 0) { fb += 'buzz'; }
 
-      // divisible by 5 and 3
-      return 'fizzbuzz';
+      // return fizzbuzz string if has length or the number
+      return fb || num;
     }
   };
 });
