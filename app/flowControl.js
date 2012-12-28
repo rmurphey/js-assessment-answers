@@ -10,9 +10,10 @@ define(function() {
       // 'fizzbuzz';
       //
       // otherwise the function should return the number, or false if no number
-      // was provided
+      // was provided or if the value provided was not a number
 
       if (!num) { return false; }
+      if (typeof num !== 'number') { return false; }
 
       // not divisible by 3 or 5
       if (num % 3 && num % 5) {
