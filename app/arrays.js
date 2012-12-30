@@ -45,6 +45,7 @@ define(function() {
         if (arr[i] === item) {
           arr.splice(i, 1);
           i = i - 1;
+          len = len - 1;
         }
       }
 
