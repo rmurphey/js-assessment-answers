@@ -62,6 +62,16 @@ define(function() {
       return arr;
     },
 
+    prepend : function(arr, item) {
+        arr.unshift(item);
+        return arr;
+    },
+
+    curtail : function(arr) {
+        arr.shift(arr);
+        return arr;
+    },
+
     concat : function(arr1, arr2) {
       return arr1.concat(arr2);
     },
