@@ -8,7 +8,7 @@ define(function () {
         console.log(start++);
 
         if (start <= end) {
-          timeout = setTimeout(doIt, 1000);
+          timeout = setTimeout(doIt, 100);
         }
       }
 
