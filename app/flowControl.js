@@ -11,7 +11,7 @@ define(function() {
       //
       // otherwise the function should return the number, or false if no number
       // was provided or if the value provided was not a number
-      if (typeof num !== 'number') { return false; }
+      if (isNaN(num)){ return false; }
 
       // not divisible by 3 or 5
       if (num % 3 && num % 5) {
