@@ -69,6 +69,29 @@ define(function() {
           return curryIt.apply(null, Array.prototype.concat.apply(args, arguments));
         };
       }
+    },
+    
+    memoizeIt: function(fn) {
+      
+      var memoize = function() {
+        var key = '';
+        for (var i = 0; i < arguments.length; i++) {
+          if (key !== '') {
+            key += " ";
+          }
+          key += arguments[i];
+        }
+        
+        if (!memoize.cache[key]) {
+          memoize.cache[key] = fn.apply(null, arguments);
+        }
+        
+        return memoize.cache[key];
+      }
+      
+      memoize.cache = {};
+      
+      return memoize;
     }
   };
 });
