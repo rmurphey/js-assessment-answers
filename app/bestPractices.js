@@ -7,7 +7,6 @@ if (typeof define !== 'function') { var define = require('amdefine')(module); }
  */
 define(function() {
   return {
-    
     globals : function() {
       var myObject = {
         name : 'Jory'
@@ -17,12 +16,11 @@ define(function() {
     },
 
     functions : function(flag) {
-      var getValue;
-      
+      var getValue; 
       if (flag) {
-        getValue = function() { return "a"; }
+        getValue = function () { return 'a'; };
       } else {
-        getValue = function() { return "b"; }
+        getValue = function () { return 'b'; };
       }
 
       return getValue();
@@ -33,7 +31,7 @@ define(function() {
     },
 
     identity : function(val1, val2) {
-      return val1 === val2;
+      return val1 === val2
     }
   };
 });
