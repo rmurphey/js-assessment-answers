@@ -3,133 +3,107 @@ if (typeof define !== 'function') { var define = require('amdefine')(module); }
 define(function() {
   return {
     indexOf : function(arr, item) {
-      /*
-      if (Array.prototype.indexOf) { return arr.indexOf(item); }
-      */
-
-      for (var i = 0, len = arr.length; i < len; i++) {
-        if (arr[i] === item) {
-          return i;
-        }
-      }
-
-      return -1;
+        return arr.indexOf(item);
     },
 
     sum : function(arr) {
-      var sum = 0;
-
-      for (var i = 0, len = arr.length; i < len; i++) {
-        sum += arr[i];
-      }
-
-      return sum;
+        return arr.reduce(function(sum, item) {
+            return sum + item;
+        }, 0);
     },
 
     remove : function(arr, item) {
-      var ret = [];
-
-      for (var i = 0, len = arr.length; i < len; i++) {
-        if (arr[i] !== item) {
-          ret.push(arr[i]);
-        }
-      }
-
-      return ret;
+        return arr.filter(function(element) {
+            return item !== element;
+        });
     },
 
     removeWithoutCopy : function(arr, item) {
-      var i, len;
-
-      for (i = 0, len = arr.length; i < len; i++) {
-        if (arr[i] === item) {
-          arr.splice(i, 1);
-          i = i - 1;
-          len = len - 1;
+        for (var i = arr.length - 1; i >= 0; i--) {
+            if (item === arr[i]) {
+                arr.splice(i , 1);
+            }
         }
-      }
-
-      return arr;
+        return arr;
     },
 
     append : function(arr, item) {
-      arr.push(item);
-      return arr;
+        arr.push(item);
+        return arr;
     },
 
     truncate : function(arr) {
-      arr.pop();
-      return arr;
+        arr.splice(arr.length - 1, 1);
+        return arr;     
     },
 
     prepend : function(arr, item) {
-        arr.unshift(item);
+        arr.splice(0, 0, item);
         return arr;
     },
 
     curtail : function(arr) {
-        arr.shift(arr);
+        arr.shift();
         return arr;
     },
 
     concat : function(arr1, arr2) {
-      return arr1.concat(arr2);
+        return arr1.concat(arr2);
     },
 
     insert : function(arr, item, index) {
-      arr.splice(index, 0, item);
-      return arr;
+        arr.splice(index, 0, item);
+        return arr;
     },
 
     count : function(arr, item) {
-      var count = 0;
-
-      for (var i = 0, len = arr.length; i < len; i++) {
-        if (arr[i] === item) {
-          count++;
-        }
-      }
-
-      return count;
+        return arr.reduce(function(count, element) {
+            if (item === element) {
+                return count + 1;    
+            } else {
+                return count;
+            }
+            
+        }, 0);  
     },
 
     duplicates : function(arr) {
-      var seen = {};
-      var dupes = [];
-
-      for (var i = 0, len = arr.length; i < len; i++) {
-        seen[arr[i]] = seen[arr[i]] ? seen[arr[i]] + 1 : 1;
-      }
-
-      for (var item in seen) {
-        if (seen.hasOwnProperty(item) && seen[item] > 1) {
-          dupes.push(item);
+        var result = [],
+            done = false,
+            i = 0,
+            j = 0;
+        for (; i < arr.length - 1; i++) {
+            j = i + 1;
+            done = false;
+            while (j < arr.length) {
+                if (arr[i] === arr[j]) {
+                    var item = arr.splice(j, 1);
+                    if (!done) {
+                        done = true;
+                        result.push(item);
+                    }
+                } else {
+                    j++;    
+                }
+                
+            }
         }
-      }
-
-      return dupes;
+        return result;
     },
 
     square : function(arr) {
-      var ret = [];
-
-      for (var i = 0, len = arr.length; i < len; i++) {
-        ret.push(arr[i] * arr[i]);
-      }
-
-      return ret;
+        return arr.map(function(item) {
+            return item * item;
+        })
     },
 
     findAllOccurrences : function(arr, target) {
-      var ret = [];
-
-      for (var i = 0, len = arr.length; i < len; i++) {
-        if (arr[i] === target) {
-          ret.push(i);
-        }
-      }
-
-      return ret;
+        return arr.reduce(function(result, item, i) {
+            if (item === target) {
+                result.push(i);
+            }            
+            return result;
+        }, []);        
     }
   };
 });

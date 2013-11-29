@@ -2,23 +2,28 @@ if (typeof define !== 'function') { var define = require('amdefine')(module); }
 
 define(function () {
   return {
-    count : function (start, end) {
-      var timeout;
-      function doIt () {
-        console.log(start++);
+    count : function(start, end) {
 
-        if (start <= end) {
-          timeout = setTimeout(doIt, 1000);
-        }
-      }
+    	var cancelled = false;
 
-      doIt();
+    	function cancel() {
+			cancelled = true;    		
+    	}
 
-      return {
-        cancel : function () {
-          timeout && clearTimeout(timeout);
-        }
-      };
+    	function doIt (start, end) {
+	    	if (!cancelled && start <= end) {
+		    	console.log(start);
+		    	setTimeout(function() {
+		    		doIt(start + 1, end);
+		    	}, 100);
+		    }
+    	}
+
+    	doIt (start, end);
+    	
+    	return {
+    		cancel: cancel
+    	};
     }
   };
 });
