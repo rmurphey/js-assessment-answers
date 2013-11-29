@@ -59,26 +59,16 @@ define(function() {
       };
     },
 
-    curryIt : function(fn) {
-      function applyArguments(fn, arguments) {
-        return fn.apply(null, arguments);
-      }
-
-      function getArgumentAccumulator(accumulatedArguments, expectedArgumentsCount) {
-        return function (currentArgument) {
-          accumulatedArguments.push(currentArgument);
-
-          var allArgumentsProvided = accumulatedArguments.length === expectedArgumentsCount;
-
-          if (allArgumentsProvided) {
-            return applyArguments(fn, accumulatedArguments);
-          } else {
-            return getArgumentAccumulator(accumulatedArguments, expectedArgumentsCount);
-          }
+    curryIt: function curryIt(fn) {
+      var args = Array.prototype.slice.call(arguments, 1);
+      if (args.length >= fn.length) {
+        return fn.apply(null, args);
+      } else {
+        args.splice(0, 0, fn);
+        return function() {
+          return curryIt.apply(null, Array.prototype.concat.apply(args, arguments));
         };
       }
-
-      return getArgumentAccumulator([], fn.length);
     }
   };
 });
