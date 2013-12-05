@@ -93,22 +93,18 @@ define(function() {
       return count;
     },
 
-    duplicates : function(arr) {
-      var seen = {};
-      var dupes = [];
+      duplicates : function(arr) {
+          var dupes = [];
 
-      for (var i = 0, len = arr.length; i < len; i++) {
-        seen[arr[i]] = seen[arr[i]] ? seen[arr[i]] + 1 : 1;
-      }
+          for (var i = 0, len = arr.length; i < len; i++) {
+              var val = arr[i];
+              if(arr.indexOf(val) !== arr.lastIndexOf(val) && dupes.indexOf(val) === -1){
+                  dupes.push(val);
+              }
+          }
 
-      for (var item in seen) {
-        if (seen.hasOwnProperty(item) && seen[item] > 1) {
-          dupes.push(item);
-        }
-      }
-
-      return dupes;
-    },
+          return dupes;
+      },
 
     square : function(arr) {
       var ret = [];
