@@ -98,7 +98,7 @@ define(function() {
 
           for (var i = 0, len = arr.length; i < len; i++) {
               var val = arr[i];
-              if(arr.indexOf(val) !== arr.lastIndexOf(val) && dupes.indexOf(val) === -1){
+              if(dupes.indexOf(val) === -1 && arr.indexOf(val) !== arr.lastIndexOf(val)){
                   dupes.push(val);
               }
           }
