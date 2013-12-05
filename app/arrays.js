@@ -104,7 +104,7 @@ define(function() {
         }
 
         return dupes;
-      },
+    },
 
     square : function(arr) {
       var ret = [];
