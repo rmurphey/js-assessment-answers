@@ -13,23 +13,8 @@ define(function() {
       // was provided or if the value provided was not a number
       if (typeof num !== 'number') { return false; }
 
-      // not divisible by 3 or 5
-      if (num % 3 && num % 5) {
-        return num;
-      }
-
-      // divisible by 3 but not 5
-      if (num % 5) {
-        return 'fizz';
-      }
-
-      // divisible by 5 but not 3
-      if (num % 3) {
-        return 'buzz';
-      }
-
-      // divisible by 5 and 3
-      return 'fizzbuzz';
+      var a = ["fizz", "", "", "", "", "buzz"];
+      return a[num % 3] + a[5 - num % 5] || num;
     }
   };
 });
