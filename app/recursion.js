@@ -73,6 +73,30 @@ define(function() {
           temp.slice()
         );
       }
+    },
+
+    fibonacci: function fib(n) {
+        if (n < 2) {
+            return n;
+        }
+        return fib(n - 1) + fib(n - 2);
+    },
+
+    validParentheses: function(n) {
+        var sets = [];
+        var getParen = function(left, right, current) {
+            if (left == 0 && right == 0) {
+                sets.push(current);
+            }
+            if (left > 0) {
+                getParen(left - 1, right + 1, current + '(');
+            }
+            if (right > 0) {
+                getParen(left, right - 1, current + ')');
+            }
+            return sets;
+        };
+        return getParen(n, 0, '');
     }
   };
 });
