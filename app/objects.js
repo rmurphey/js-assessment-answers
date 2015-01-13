@@ -20,6 +20,18 @@ define(function() {
       }
 
       return ret;
+    },
+
+    iterate2 : function(obj) {
+      var ret = [];
+
+      for (var prop in obj) {
+        if (({}).hasOwnProperty.call(obj, prop)) {
+          ret.push(prop + ': ' + obj[prop]);
+        }
+      }
+
+      return ret;
     }
   };
 });
