@@ -73,6 +73,41 @@ define(function() {
           temp.slice()
         );
       }
+    },
+
+    fibonacci: function(n) {
+        function fib(n) {
+           if (n <= 1)
+              return n;
+           return fib(n-1) + fib(n-2);
+        }
+
+        return fib(n);
+    },
+
+    validParentheses: function(n) {
+        var validParentheses = [];
+        
+        brackets('', 0, 0, n);  
+        
+        function brackets(bracket, open, close, pairs)
+        {
+            if( (open===pairs) && (close===pairs) )
+            {
+                validParentheses.push(bracket);
+            }
+            else
+            {
+                if (open<pairs) {
+                    brackets(bracket + '(', open+1, close, pairs);
+                }
+                if (close<open) {
+                    brackets(bracket + ')', open, close+1, pairs);
+                }
+            }
+        }
+
+        return validParentheses;
     }
   };
 });
