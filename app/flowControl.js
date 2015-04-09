@@ -17,13 +17,14 @@ define(function() {
       if (num % 3 && num % 5) {
         return num;
       }
+      // divisible by at least one of 3 or 5
 
-      // divisible by 3 but not 5
+      // not divisible by 5, therefore divisible by 3 only
       if (num % 5) {
         return 'fizz';
       }
 
-      // divisible by 5 but not 3
+      // not divisible by 3, therefore divisible by 5 only
       if (num % 3) {
         return 'buzz';
       }
