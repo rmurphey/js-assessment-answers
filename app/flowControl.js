@@ -3,6 +3,8 @@ if (typeof define !== 'function') { var define = require('amdefine')(module); }
 define(function() {
   return {
     fizzBuzz : function(num) {
+      
+      // INSTRUCTIONS
       // write a function that receives a number as its argument;
       // if the number is divisible by 3, the function should return 'fizz';
       // if the number is divisible by 5, the function should return 'buzz';
@@ -11,25 +13,35 @@ define(function() {
       //
       // otherwise the function should return the number, or false if no number
       // was provided or if the value provided was not a number
-      if (typeof num !== 'number') { return false; }
 
-      // not divisible by 3 or 5
-      if (num % 3 && num % 5) {
-        return num;
+      // make sure the value provided was a number, if not, return false
+      if (typeof num !== 'number') {
+        return false;
       }
 
-      // divisible by 3 but not 5
-      if (num % 5) {
+      // if the number is divisible by 3 AND 5, then when divided by both,
+      // the remainder for each operation will be zero
+      // return 'fizzbuzz'
+      if (num % 3 === 0 && num % 5 === 0) {
+        return 'fizzbuzz';
+      }
+
+      // if the number is divisible by 3, when divided by 3, the remainder is zero 
+      // return 'fizz'
+      if (num % 3 === 0) {
         return 'fizz';
       }
 
-      // divisible by 5 but not 3
-      if (num % 3) {
+      // if the number is divisible by 5, when divided by 5, the remainder is zero
+      // return 'buzz'
+      if (num % 5 === 0) {
         return 'buzz';
       }
 
-      // divisible by 5 and 3
-      return 'fizzbuzz';
+      // if the number is not divisble by 3 or 5, i.e. has skipped all previous
+      // conditions, return the number
+      return num;
+      
     }
   };
 });
