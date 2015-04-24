@@ -25,6 +25,11 @@ define(function() {
 
       return sum;
     },
+    
+    sum_series : function(arr){
+      var n = arr.length;
+      return (n*(n+1))/2;
+    },
 
     remove : function(arr, item) {
       var ret = [];
