@@ -38,7 +38,7 @@ define(function() {
         return 'buzz';
       }
 
-      // if the number is not divisble by 3 or 5, i.e. has skipped all previous
+      // if the number is not divisible by 3 or 5, i.e. has skipped all previous
       // conditions, return the number
       return num;
       
