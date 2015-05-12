@@ -16,7 +16,7 @@ define(function () {
 
       return {
         cancel : function () {
-          timeout && clearTimeout(timeout);
+          clearTimeout(timeout);
         }
       };
     }
