@@ -1,24 +1,22 @@
-if (typeof define !== 'function') { var define = require('amdefine')(module); }
+exports = (typeof window === 'undefined') ? global : window;
 
-define(function () {
-  return {
-    count : function (start, end) {
-      var timeout;
-      function doIt () {
-        console.log(start++);
+exports.countAnswers = {
+  count : function (start, end) {
+    var timeout;
+    function doIt () {
+      console.log(start++);
 
-        if (start <= end) {
-          timeout = setTimeout(doIt, 100);
-        }
+      if (start <= end) {
+        timeout = setTimeout(doIt, 100);
       }
-
-      doIt();
-
-      return {
-        cancel : function () {
-          timeout && clearTimeout(timeout);
-        }
-      };
     }
-  };
-});
+
+    doIt();
+
+    return {
+      cancel : function () {
+        timeout && clearTimeout(timeout);
+      }
+    };
+  }
+};
