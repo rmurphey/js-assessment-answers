@@ -72,5 +72,15 @@ exports.recursionAnswers  = {
         temp.slice()
       );
     }
+  },
+
+  fibonacci: function(n) {
+    var sequence = [0, 1];
+
+    for (var i=sequence.length; i<=n; i++) {
+      sequence[i] = sequence[i-1] + sequence[i-2];
+    }
+
+    return sequence[n];
   }
 };
