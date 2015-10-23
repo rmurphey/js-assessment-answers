@@ -93,20 +93,15 @@ exports.arraysAnswers = {
   },
 
   duplicates : function(arr) {
-    var seen = {};
-    var dupes = [];
+    var newArr = [];
 
-    for (var i = 0, len = arr.length; i < len; i++) {
-      seen[arr[i]] = seen[arr[i]] ? seen[arr[i]] + 1 : 1;
-    }
-
-    for (var item in seen) {
-      if (seen.hasOwnProperty(item) && seen[item] > 1) {
-        dupes.push(item);
+    arr.filter(function (value, index, self) {
+      if (!(index > 0 && value != self[index - 1])) {
+        newArr.push(value);
       }
-    }
+    });
 
-    return dupes;
+    return newArr.sort();
   },
 
   square : function(arr) {
