@@ -82,6 +82,37 @@ exports.recursionAnswers  = {
       return 1;
     }
     return this.fibonacci(n-1) + this.fibonacci(n-2);
+  },
+
+  validParentheses: function(n) {
+    if (n < 1) {
+      return [];
+    } else if (n === 1) {
+      return ['()'];
+    } else {
+      // use a map instead of an array to prevent duplicates
+      // e.g.: '()'+'()()' === '()()'+'()'
+      var comboMap = {};
+      var innerCombos = this.validParentheses(n-1);
+
+      // For each inner combo, add one more pair of parentheses to it
+      // in each of the 3 valid configurations
+      for (var i=0; i<innerCombos.length; i++) {
+        var curInnerCombo = innerCombos[i];
+
+        comboMap['(' + curInnerCombo + ')'] = true;
+        comboMap['()' + curInnerCombo] = true;
+        comboMap[curInnerCombo + '()'] = true;
+      }
+
+      var comboList = [];
+      for (var combo in comboMap) {
+        if (comboMap.hasOwnProperty(combo)) {
+          comboList.push(combo);
+        }
+      }
+      return comboList;
+    }
   }
-  
+
 };
