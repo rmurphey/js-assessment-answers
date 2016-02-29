@@ -16,6 +16,11 @@ exports.arraysAnswers = {
   },
 
   sum : function(arr) {
+    
+    /*
+    if (Array.prototype.reduce) { return arr.reduce( (base, el) => base + el, 0); }
+    */
+    
     var sum = 0;
 
     for (var i = 0, len = arr.length; i < len; i++) {
@@ -26,6 +31,11 @@ exports.arraysAnswers = {
   },
 
   remove : function(arr, item) {
+    
+    /*
+    if (Array.prototype.filter) { return arr.filter((el) => !(el === item)); }
+    */
+    
     var ret = [];
 
     for (var i = 0, len = arr.length; i < len; i++) {
@@ -38,6 +48,16 @@ exports.arraysAnswers = {
   },
 
   removeWithoutCopy : function(arr, item) {
+    
+    /*
+    for ( var pos = arr.indexOf(item)
+      ; pos > -1
+      ; pos = arr.indexOf(item)) {
+      arr.splice(pos, 1);
+    }
+    return arr;
+    */
+    
     var i, len;
 
     for (i = 0, len = arr.length; i < len; i++) {
@@ -81,6 +101,14 @@ exports.arraysAnswers = {
   },
 
   count : function(arr, item) {
+    
+    /*
+    if (Array.prototype.reduce) {
+      return arr.reduce((base, el) => base + (el === item ? 1 : 0)
+        , 0);
+    }
+    */
+    
     var count = 0;
 
     for (var i = 0, len = arr.length; i < len; i++) {
@@ -93,6 +121,18 @@ exports.arraysAnswers = {
   },
 
   duplicates : function(arr) {
+    
+    /*
+    var seen = new Set([]),
+      dupes = new Set([]);
+    arr.forEach(el => {
+      if (seen.has(el)) {dupes.add(el);}
+      seen.add(el);
+    }
+    );
+    return Array.from(dupes);
+    */
+    
     var seen = {};
     var dupes = [];
 
@@ -110,6 +150,13 @@ exports.arraysAnswers = {
   },
 
   square : function(arr) {
+    
+    /*
+    if (Array.prototype.map) {
+      return arr.map(el => el * el);
+    }
+    */
+    
     var ret = [];
 
     for (var i = 0, len = arr.length; i < len; i++) {
