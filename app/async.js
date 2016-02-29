@@ -1,7 +1,13 @@
 exports = (typeof window === 'undefined') ? global : window;
 
 exports.asyncAnswers = {
+  
   async : function(value) {
+    
+    /* does not use jQuery
+    return new Promise((resolve, reject) => setTimeout(() => resolve(value), 10));
+    */
+    
     var dfd = $.Deferred();
     setTimeout(function() {
       dfd.resolve(value);
