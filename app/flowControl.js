@@ -21,7 +21,7 @@ exports.flowControlAnswers = {
     // if the number is divisible by 3 AND 5, then when divided by both,
     // the remainder for each operation will be zero
     // return 'fizzbuzz'
-    if (num % 3 === 0 && num % 5 === 0) {
+    if (num % (3*5) === 0) {
       return 'fizzbuzz';
     }
 
