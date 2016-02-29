@@ -1,11 +1,19 @@
+purge
+
 exports = (typeof window === 'undefined') ? global : window;
 
 exports.functionsAnswers = {
   argsAsArray : function(fn, arr) {
+    /*
+        return fn(...arr);
+    */
     return fn.apply(null, arr);
   },
 
   speak : function(fn, obj) {
+    /*
+        return fn.bind(obj)();
+    */
     return fn.call(obj);
   },
 
@@ -16,6 +24,15 @@ exports.functionsAnswers = {
   },
 
   makeClosures : function(arr, fn) {
+    
+    /*
+    if (Array.prototype.map) {
+      return arr.map(function (el) {
+        return function () {return fn(el);};
+      });
+    }
+    */
+    
     var ret = [];
 
     var makeFn = function(val) {
@@ -34,6 +51,14 @@ exports.functionsAnswers = {
       return fn.call(null, str1, str2, str3);
     };
   },
+  
+  /*
+  useArguments: function (...ar) {
+    if (Array.prototype.reduce) {
+      return ar.reduce((el, base) => el + base);
+    }
+  },
+  */
 
   useArguments : function() {
     var sum = 0;
@@ -45,10 +70,24 @@ exports.functionsAnswers = {
     return sum;
   },
 
+  /*
+  callIt: function (fn, ...ar) {
+    return fn(...ar);
+  },
+  */
+  
   callIt : function(fn) {
     var args = Array.prototype.slice.call(arguments, 1, arguments.length);
     fn.apply(null, args);
   },
+  
+  /*
+  partialUsingArguments: function (fn, ...ar) {
+    return function (...br) {
+      return fn(...ar, ...br);
+    };
+  },
+  */
 
   partialUsingArguments : function(fn) {
     var args = Array.prototype.slice.call(arguments, 1, arguments.length);
@@ -59,6 +98,23 @@ exports.functionsAnswers = {
   },
 
   curryIt : function(fn) {
+    
+    /*
+    var allargs = [],
+      funcLen = fn.length;
+
+    var f = function (newarg) {
+      if (newarg !== undefined && newarg != null) {
+        allargs.push(newarg);
+        if (allargs.length >= funcLen) {
+          return fn(...allargs);
+        }
+      }
+      return f;
+    };
+    return f(null);
+   */
+   
     function applyArguments(fn, arguments) {
       return fn.apply(null, arguments);
     }
