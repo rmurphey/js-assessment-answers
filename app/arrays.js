@@ -1,7 +1,8 @@
-exports = (typeof window === 'undefined') ? global : window;
+exports = typeof window === 'undefined' ? global : window;
 
 exports.arraysAnswers = {
-  indexOf : function(arr, item) {
+  indexOf: function(arr, item) {
+
     /*
     if (Array.prototype.indexOf) { return arr.indexOf(item); }
     */
@@ -15,7 +16,7 @@ exports.arraysAnswers = {
     return -1;
   },
 
-  sum : function(arr) {
+  sum: function(arr) {
     var sum = 0;
 
     for (var i = 0, len = arr.length; i < len; i++) {
@@ -25,7 +26,7 @@ exports.arraysAnswers = {
     return sum;
   },
 
-  remove : function(arr, item) {
+  remove: function(arr, item) {
     var ret = [];
 
     for (var i = 0, len = arr.length; i < len; i++) {
@@ -37,50 +38,51 @@ exports.arraysAnswers = {
     return ret;
   },
 
-  removeWithoutCopy : function(arr, item) {
-    var i, len;
+  removeWithoutCopy: function(arr, item) {
+    var i;
+    var len;
 
     for (i = 0, len = arr.length; i < len; i++) {
       if (arr[i] === item) {
         arr.splice(i, 1);
-        i = i - 1;
-        len = len - 1;
+        i--;
+        len--;
       }
     }
 
     return arr;
   },
 
-  append : function(arr, item) {
+  append: function(arr, item) {
     arr.push(item);
     return arr;
   },
 
-  truncate : function(arr) {
+  truncate: function(arr) {
     arr.pop();
     return arr;
   },
 
-  prepend : function(arr, item) {
+  prepend: function(arr, item) {
     arr.unshift(item);
     return arr;
   },
 
-  curtail : function(arr) {
+  curtail: function(arr) {
     arr.shift(arr);
     return arr;
   },
 
-  concat : function(arr1, arr2) {
+  concat: function(arr1, arr2) {
     return arr1.concat(arr2);
   },
 
-  insert : function(arr, item, index) {
+  insert: function(arr, item, index) {
     arr.splice(index, 0, item);
     return arr;
   },
 
-  count : function(arr, item) {
+  count: function(arr, item) {
     var count = 0;
 
     for (var i = 0, len = arr.length; i < len; i++) {
@@ -92,7 +94,7 @@ exports.arraysAnswers = {
     return count;
   },
 
-  duplicates : function(arr) {
+  duplicates: function(arr) {
     var seen = {};
     var dupes = [];
 
@@ -109,7 +111,7 @@ exports.arraysAnswers = {
     return dupes;
   },
 
-  square : function(arr) {
+  square: function(arr) {
     var ret = [];
 
     for (var i = 0, len = arr.length; i < len; i++) {
@@ -119,7 +121,7 @@ exports.arraysAnswers = {
     return ret;
   },
 
-  findAllOccurrences : function(arr, target) {
+  findAllOccurrences: function(arr, target) {
     var ret = [];
 
     for (var i = 0, len = arr.length; i < len; i++) {

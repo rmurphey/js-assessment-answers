@@ -1,8 +1,8 @@
-exports = (typeof window === 'undefined') ? global : window;
+exports = typeof window === 'undefined' ? global : window;
 
 exports.flowControlAnswers = {
-  fizzBuzz : function(num) {
-      
+  fizzBuzz: function(num) {
+
     // INSTRUCTIONS
     // write a function that receives a number as its argument;
     // if the number is divisible by 3, the function should return 'fizz';
@@ -25,7 +25,7 @@ exports.flowControlAnswers = {
       return 'fizzbuzz';
     }
 
-    // if the number is divisible by 3, when divided by 3, the remainder is zero 
+    // if the number is divisible by 3, when divided by 3, the remainder is zero
     // return 'fizz'
     if (num % 3 === 0) {
       return 'fizz';
@@ -40,6 +40,6 @@ exports.flowControlAnswers = {
     // if the number is not divisible by 3 or 5, i.e. has skipped all previous
     // conditions, return the number
     return num;
-      
+
   }
 };

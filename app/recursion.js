@@ -1,14 +1,14 @@
-exports = (typeof window === 'undefined') ? global : window;
+exports = typeof window === 'undefined' ? global : window;
 
-exports.recursionAnswers  = {
+exports.recursionAnswers = {
   listFiles: function(data, dirName) {
     var listOfFiles = [];
     var dirs = [];
 
-    processDir(data);
-
     function processDir(dir) {
-      var i, len, file;
+      var i;
+      var len;
+      var file;
       var files = dir.files;
 
       dirs.push( dir.dir );
@@ -27,6 +27,9 @@ exports.recursionAnswers  = {
       dirs.pop();
     }
 
+    processDir(data);
+
+
     return listOfFiles;
   },
 
@@ -35,10 +38,18 @@ exports.recursionAnswers  = {
     var temp = [];
     var answer = [];
 
-    return doIt(arr);
+    function logResult() {
+      answer.push(
+        // make a copy of temp using .slice()
+        // so we can continue to work with temp
+        temp.slice()
+      );
+    }
 
-    function doIt(a) {
-      var i, len, item;
+    function doIt() {
+      var i;
+      var len;
+      var item;
 
       for (i = 0, len = arr.length; i < len; i++) {
         // remove the item at index i
@@ -50,7 +61,7 @@ exports.recursionAnswers  = {
         if (arr.length) {
           // if there's still anything left in the array,
           // recurse over what's left
-          doIt(arr);
+          doIt();
         } else {
           // otherwise, log the result and move on
           logResult();
@@ -65,12 +76,6 @@ exports.recursionAnswers  = {
       return answer;
     }
 
-    function logResult() {
-      answer.push(
-        // make a copy of temp using .slice()
-        // so we can continue to work with temp
-        temp.slice()
-      );
-    }
+    return doIt();
   }
 };

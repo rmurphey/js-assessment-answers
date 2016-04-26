@@ -1,7 +1,8 @@
-exports = (typeof window === 'undefined') ? global : window;
+/* global $ */
+exports = typeof window === 'undefined' ? global : window;
 
 exports.asyncAnswers = {
-  async : function(value) {
+  async: function(value) {
     var dfd = $.Deferred();
     setTimeout(function() {
       dfd.resolve(value);
@@ -9,7 +10,7 @@ exports.asyncAnswers = {
     return dfd.promise();
   },
 
-  manipulateRemoteData : function(url) {
+  manipulateRemoteData: function(url) {
     var dfd = $.Deferred();
 
     $.ajax(url).then(function(resp) {

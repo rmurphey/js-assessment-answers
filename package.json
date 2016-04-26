@@ -1,0 +1,27 @@
+{
+  "name": "js-assessment-answers",
+  "version": "1.0.0",
+  "description": "This repo contains the answers to the tests in the [js-assessment](https://github.com/rmurphey/js-assessment) repo. See the README there for instructions on how to work on these tests.",
+  "scripts": {
+    "lint": "eslint --quiet app",
+    "lint-warn": "eslint app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmurphey/js-assessment-answers.git"
+  },
+  "author": "Rebecca Murphey",
+  "bugs": {
+    "url": "https://github.com/rmurphey/js-assessment-answers/issues"
+  },
+  "homepage": "https://github.com/rmurphey/js-assessment#readme",
+  "devDependencies": {
+    "eslint": "^2.8.0",
+    "ghooks": "^1.2.1"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
+}

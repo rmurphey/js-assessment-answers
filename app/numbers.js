@@ -1,4 +1,5 @@
-exports = (typeof window === 'undefined') ? global : window;
+/* eslint-disable no-bitwise */
+exports = typeof window === 'undefined' ? global : window;
 
 exports.numbersAnswers = {
   valueAtBit: function(num, bit) {
@@ -34,10 +35,10 @@ exports.numbersAnswers = {
         exponent = Math.floor( Math.log(num) * -1 );
         multiplier = Math.pow(10, exponent);
 
-        return { adjusted: num * multiplier, multiplier: multiplier };
+        return {adjusted: num * multiplier, multiplier: multiplier};
       }
 
-      return { adjusted: num, multiplier: 1 };
+      return {adjusted: num, multiplier: 1};
     }
   }
 };
