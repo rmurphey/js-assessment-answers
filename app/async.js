@@ -3,23 +3,43 @@ exports = typeof window === 'undefined' ? global : window;
 
 exports.asyncAnswers = {
   async: function(value) {
-    var dfd = $.Deferred();
-    setTimeout(function() {
-      dfd.resolve(value);
-    }, 10);
-    return dfd.promise();
+    return new Promise(function(resolve, reject){
+      setTimeout(function() {
+        resolve(value);
+      }, 10);
+    });
   },
 
   manipulateRemoteData: function(url) {
-    var dfd = $.Deferred();
+    return new Promise(function(resolve, reject){
 
-    $.ajax(url).then(function(resp) {
-      var people = $.map(resp.people, function(person) {
-        return person.name;
-      });
-      dfd.resolve(people.sort());
+      var req = new XMLHttpRequest();
+      req.open('GET', url);
+
+      req.onload = function() {
+        // This is called even on 404 etc
+        // so check the status
+        if (req.status == 200) {
+          var peopleObj = JSON.parse(req.response);
+          var names = peopleObj.people
+              .map(function(person) {
+                return person.name;
+              })
+              .sort();
+          resolve(names);
+        }
+        else {
+          reject(Error(req.statusText));
+        }
+      };
+
+      // Handle network errors
+      req.onerror = function() {
+        reject(Error("Network Error"));
+      };
+
+      req.send();
+
     });
-
-    return dfd.promise();
   }
 };
