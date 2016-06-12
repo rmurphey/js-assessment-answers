@@ -1,22 +1,25 @@
-exports = typeof window === 'undefined' ? global : window;
+exports = (typeof window === 'undefined') ? global : window;
 
 exports.countAnswers = {
   count: function (start, end) {
     var timeout;
-    function doIt () {
-      console.log(start++); // eslint-disable-line no-console
+
+    // Recurse through run()
+    // Note: setInterval could be used too, but it will continue to call the fn and needs to be cleared once start = end.
+    function run() {
+      console.log(start++);
 
       if (start <= end) {
-        timeout = setTimeout(doIt, 100);
+        timeout = setTimeout(run, 100);
       }
     }
 
-    doIt();
+    run();
 
     return {
       cancel: function () {
         timeout && clearTimeout(timeout);
       }
-    };
+    }
   }
 };

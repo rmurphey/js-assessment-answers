@@ -1,25 +1,24 @@
-/* global $ */
-exports = typeof window === 'undefined' ? global : window;
+exports = (typeof window === 'undefined') ? global : window;
 
 exports.asyncAnswers = {
-  async: function(value) {
-    var dfd = $.Deferred();
-    setTimeout(function() {
-      dfd.resolve(value);
+  async: function (value) {
+    var deferred = $.Deferred();
+    setTimeout(function () {
+      deferred.resolve(value);
     }, 10);
-    return dfd.promise();
+    return deferred.promise();
   },
 
-  manipulateRemoteData: function(url) {
-    var dfd = $.Deferred();
+  manipulateRemoteData: function (url) {
+    var deferred = $.Deferred();
 
-    $.ajax(url).then(function(resp) {
-      var people = $.map(resp.people, function(person) {
+    $.ajax(url).then(function (resp) {
+      var people = resp.people.map(function (person) {
         return person.name;
       });
-      dfd.resolve(people.sort());
+      deferred.resolve(people.sort());
     });
 
-    return dfd.promise();
+    return deferred.promise();
   }
 };
