@@ -3,23 +3,29 @@ exports = typeof window === 'undefined' ? global : window;
 
 exports.asyncAnswers = {
   async: function(value) {
-    var dfd = $.Deferred();
-    setTimeout(function() {
-      dfd.resolve(value);
-    }, 10);
-    return dfd.promise();
+    return new Promise( 
+      resolve => resolve(value)
+    );
   },
 
   manipulateRemoteData: function(url) {
-    var dfd = $.Deferred();
+    return new Promise(function(resolve, reject) {
 
-    $.ajax(url).then(function(resp) {
-      var people = $.map(resp.people, function(person) {
-        return person.name;
-      });
-      dfd.resolve(people.sort());
-    });
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', url);
+      xhr.onload = function() {
+        if ( xhr.status == 200 ) 
+          resolve(xhr.response);
+        else 
+          reject(Error(xhr.statusText)); 
+      }
+      xhr.send();
+      
+    }).then(function(response) { 
 
-    return dfd.promise();
+      let data = JSON.parse(response).people;
+      return data.map( key => key.name ).sort();
+
+    }); 
   }
 };
