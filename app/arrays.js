@@ -17,13 +17,9 @@ exports.arraysAnswers = {
   },
 
   sum: function(arr) {
-    var sum = 0;
-
-    for (var i = 0, len = arr.length; i < len; i++) {
-      sum += arr[i];
-    }
-
-    return sum;
+    retun arr.reduce(function(prev, curr) {
+      return prev + curr;
+    });
   },
 
   remove: function(arr, item) {
