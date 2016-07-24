@@ -47,7 +47,8 @@ exports.functionsAnswers = {
 
   callIt: function(fn) {
     var args = Array.prototype.slice.call(arguments, 1, arguments.length);
-    fn.apply(null, args);
+    
+    return fn.apply(null, args);
   },
 
   partialUsingArguments: function(fn) {
