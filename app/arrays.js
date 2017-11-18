@@ -95,16 +95,14 @@ exports.arraysAnswers = {
   },
 
   duplicates: function(arr) {
-    var seen = {};
+    var seen = [];
     var dupes = [];
 
-    for (var i = 0, len = arr.length; i < len; i++) {
-      seen[arr[i]] = seen[arr[i]] ? seen[arr[i]] + 1 : 1;
-    }
-
-    for (var item in seen) {
-      if (seen.hasOwnProperty(item) && seen[item] > 1) {
-        dupes.push(item);
+    for (var i = 0, len = arr.length; i < len ; i++) {
+      if (!seen.includes(arr[i])) {
+        seen.push(arr[i]);
+      } else if (!dupes.includes(arr[i])) {
+        dupes.push(arr[i]); 
       }
     }
 
