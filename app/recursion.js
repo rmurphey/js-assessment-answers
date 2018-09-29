@@ -77,5 +77,29 @@ exports.recursionAnswers = {
     }
 
     return doIt();
+  },
+  
+  fibonacci: function(n) {
+    // create a HashMap for keeping track of old calculated answers, to remove repeated calculations
+    // this is known as dynamic programming
+    let map = new Map();
+
+    return fib(n);
+
+    function fib(n) {
+      // base cases: first 2 sequence numbers in fibonacci are 1
+      if (n < 3) return 1;
+      // if the answer to fib(n) already exists in the map, return that value
+      if (map.has(n)) {
+        return map.get(n);
+      }
+      // otherwise, calculate the new fib(n) by calling itself on the 2 previous numbers, and place it in the HashMap
+      else {
+        map.set(n, fib(n-1) + fib(n-2));
+      }
+      // return value from HashMap
+      return map.get(n);
+    }
   }
+  
 };
